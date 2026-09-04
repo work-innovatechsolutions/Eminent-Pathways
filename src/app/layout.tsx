@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import MobileStickyBar from '@/components/layout/MobileStickyBar';
 import WhatsAppWidget from '@/components/ui/WhatsAppWidget';
+import PageTransition from '@/components/layout/PageTransition';
 import { siteConfig } from '@/config/site';
 
 const inter = Inter({
@@ -122,7 +123,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col selection:bg-brand-gold selection:text-white font-sans bg-white">
         <Navbar />
-        <main className="flex-grow pb-16 lg:pb-0">{children}</main>
+        <main className="flex-grow pb-16 lg:pb-0 flex flex-col">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <MobileStickyBar />
         <WhatsAppWidget />

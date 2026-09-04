@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
-  MessageCircle,
   X,
   Send,
   ShieldCheck,
@@ -16,6 +15,21 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+
+// Official authentic WhatsApp SVG icon
+function WhatsAppIcon({ className = 'w-6 h-6', ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 448 512"
+      fill="currentColor"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+    </svg>
+  );
+}
 
 interface QuickOption {
   id: string;
@@ -77,7 +91,7 @@ export default function WhatsAppWidget() {
 
   return (
     <div className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end pointer-events-none select-none">
-      {/* 1. Popup Modal / Chat Box (Golden & White Theme with Green WhatsApp CTA) */}
+      {/* 1. Popup Modal / Chat Box (Golden & White Theme with Green CTA) */}
       {isOpen && (
         <div className="pointer-events-auto mb-3 w-[92vw] sm:w-[380px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(11,19,43,0.18)] border border-brand-gold/40 overflow-hidden flex flex-col animate-in slide-in-from-bottom-5 fade-in duration-200">
           {/* Header Banner (Ivory & Gold Gradient with Navy text) */}
@@ -174,17 +188,15 @@ export default function WhatsAppWidget() {
               </div>
             </div>
 
-            {/* Direct Chat Primary Button (Green with WhatsApp Logo) */}
+            {/* Direct Chat Primary Button (Green with Official WhatsApp Logo) */}
             <div className="pt-2">
               <button
                 type="button"
                 onClick={() => handleOpenWhatsApp()}
-                className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#25D366] via-emerald-600 to-[#128C7E] hover:from-emerald-600 hover:to-[#075E54] text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 flex items-center justify-center gap-2.5 group"
+                className="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-[#25D366]/30 transition-all duration-200 flex items-center justify-center gap-2.5 group"
               >
-                <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center text-emerald-600 shadow-sm">
-                  <MessageCircle className="w-3.5 h-3.5 fill-emerald-600 text-white" />
-                </div>
-                <span>Start Direct Chat</span>
+                <WhatsAppIcon className="w-5 h-5 fill-white flex-shrink-0" />
+                <span className="font-extrabold tracking-wide">Start Direct Chat</span>
                 <Send className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
@@ -230,11 +242,11 @@ export default function WhatsAppWidget() {
           </div>
         )}
 
-        {/* Circular WhatsApp Action Button (Green with WhatsApp Logo) */}
+        {/* Circular WhatsApp Action Button (Green with Official WhatsApp Logo) */}
         <div className="relative flex items-center justify-center">
           {/* Pulsing Outer Aura */}
-          <span className="absolute w-16 h-16 rounded-full bg-emerald-500/25 animate-ping pointer-events-none" />
-          <span className="absolute w-20 h-20 rounded-full bg-emerald-500/10 pointer-events-none" />
+          <span className="absolute w-16 h-16 rounded-full bg-[#25D366]/25 animate-ping pointer-events-none" />
+          <span className="absolute w-20 h-20 rounded-full bg-[#25D366]/10 pointer-events-none" />
 
           <button
             type="button"
@@ -242,13 +254,13 @@ export default function WhatsAppWidget() {
               setIsOpen(!isOpen);
               setShowTooltip(false);
             }}
-            className="relative w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-500 text-white flex items-center justify-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-200 border-2 border-white focus:outline-none"
+            className="relative w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-200 border-2 border-white focus:outline-none"
             aria-label="Open WhatsApp Chat"
           >
             {isOpen ? (
               <X className="w-6 h-6 text-white font-bold" />
             ) : (
-              <MessageCircle className="w-7 h-7 fill-white text-emerald-500" />
+              <WhatsAppIcon className="w-8 h-8 fill-white" />
             )}
 
             {/* Notification Badge Dot */}
