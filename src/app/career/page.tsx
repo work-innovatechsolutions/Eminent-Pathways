@@ -86,17 +86,16 @@ export default function CareerPage() {
             </div>
 
             {/* Poster Creative */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl bg-slate-950">
-                <div className="relative h-80 sm:h-[420px] w-full">
-                  <Image
-                    src="/images/career-poster.jpeg"
-                    alt="Learn IT Get Interview-Ready Pay After Placement"
-                    fill
-                    className="object-contain p-2"
-                    priority
-                  />
-                </div>
+            <div className="lg:col-span-5 flex justify-center items-center">
+              <div className="relative w-full max-w-[440px] sm:max-w-[480px] lg:max-w-[500px] aspect-[873/1280] rounded-2xl overflow-hidden border-2 border-brand-gold/50 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-gold group">
+                <Image
+                  src="/images/career-poster.jpeg"
+                  alt="Learn IT Get Interview-Ready Pay After Placement"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                  priority
+                />
               </div>
             </div>
           </div>
