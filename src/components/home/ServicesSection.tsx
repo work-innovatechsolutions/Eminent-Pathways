@@ -86,21 +86,23 @@ export default function ServicesSection() {
             </p>
           </div>
 
-          {/* Fast Category Filter */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 rounded-xl">
-            {serviceCategories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedFilter(cat.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  selectedFilter === cat.id
-                    ? 'bg-brand-navy text-white shadow-sm'
-                    : 'text-slate-600 hover:text-brand-navy hover:bg-slate-200/60'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          {/* Fast Category Filter (Desktop clean pill row / Mobile smooth swipeable no-wrap bar) */}
+          <div className="w-full md:w-auto overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 py-1">
+            <div className="inline-flex items-center gap-1.5 p-1.5 bg-slate-100 rounded-2xl border border-slate-200/70 min-w-max shadow-inner">
+              {serviceCategories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedFilter(cat.id)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
+                    selectedFilter === cat.id
+                      ? 'bg-brand-navy text-white shadow-md'
+                      : 'text-slate-600 hover:text-brand-navy hover:bg-white/80'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
