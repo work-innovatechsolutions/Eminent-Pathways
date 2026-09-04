@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-outfit: 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #0F172A;
+  background-color: #FFFFFF;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: #C5A059;
+  color: #FFFFFF;
+}
+
+/* Glassmorphism limited to Nav & Floating UI */
+.glass-nav {
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.glass-card-dark {
+  background: rgba(11, 19, 43, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+/* Pathway visual SVG styling */
+.pathway-stroke {
+  stroke-dasharray: 8 8;
+  animation: pathwayDash 30s linear infinite;
+}
+
+@keyframes pathwayDash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/* Subtle gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #E5C88E 0%, #C5A059 50%, #A37E36 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

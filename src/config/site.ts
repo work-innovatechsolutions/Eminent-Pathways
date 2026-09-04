@@ -1,0 +1,65 @@
+export const siteConfig = {
+  name: "Eminent Pathways",
+  tagline: "Your Future • Our Guidance • Endless Possibilities",
+  positioning: "One-Stop Solution for Education, Career, IT, HR & Placement Services",
+  phones: ["8777241939", "9038179133"],
+  whatsapp: {
+    number: "918777241939",
+    message: "Hello Eminent Pathways, I would like to know more about your services.",
+    get link() {
+      return `https://wa.me/${this.number}?text=${encodeURIComponent(this.message)}`;
+    },
+  },
+  email: "[Add official email]", // Editable placeholder for official business email
+  operationalOffice: {
+    name: "Eminent Pathways",
+    heading: "Operational & Contact Office",
+    line1: "1 No. Government Market",
+    city: "Kalyani",
+    district: "Nadia",
+    state: "West Bengal",
+    pin: "741235",
+    fullAddress: "1 No. Government Market, Kalyani, Nadia, West Bengal – 741235",
+    mapEmbedQuery: "1+No.+Government+Market,+Kalyani,+West+Bengal+741235",
+  },
+  registeredEnterprise: {
+    name: "Eminent Pathways",
+    heading: "Udyam Registered Enterprise Details",
+    line1: "241, S K Dev Road",
+    city: "Kolkata",
+    state: "West Bengal",
+    pin: "700048",
+    fullAddress: "241, S K Dev Road, Kolkata, West Bengal – 700048",
+    udyamNumber: "UDYAM-WB-10-0165166",
+    enterpriseType: "Micro Enterprise",
+    majorActivity: "Services",
+    nicCode: "70200 — Management Consultancy Activities",
+    registrationDate: "16/06/2025",
+  },
+  iso: {
+    title: "Quality Management System Certificate",
+    standard: "ISO 9001:2015",
+    certNumber: "IN01233112",
+    scope: "Provision of consultancy, implementation, documentation, training and internal audit services for management system standards.",
+    verificationUrl: "https://www.uscert.co.uk",
+    issuanceDate: "24-08-2026",
+    firstSurveillanceDate: "23-08-2027",
+  },
+  verifiedStats: [
+    { value: "09", label: "Core Service Areas" },
+    { value: "05", label: "Step Approach" },
+    { value: "2025", label: "Udyam Registration" },
+  ],
+  mottos: [
+    "Train Today. Get Placed. Pay After Placement.",
+    "Your Dream. Our Guidance. Together We Achieve.",
+  ],
+  navLinks: [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Career Program", href: "/career" },
+    { label: "Our Work", href: "/our-work" },
+    { label: "Contact", href: "/contact" },
+  ],
+};
