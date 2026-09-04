@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Phone, Menu, X, ArrowRight, MessageCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig } from '@/config/site';
 import { appImages } from '@/config/images';
 
@@ -76,7 +77,11 @@ export default function Navbar() {
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-brand-gold rounded-full" />
+                    <motion.span
+                      layoutId="navbarActiveIndicator"
+                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-brand-gold rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
                   )}
                 </Link>
               );
@@ -104,70 +109,117 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
+          {/* Mobile Menu Button with Animated Rotation */}
+          <motion.button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none transition-colors"
             aria-label="Toggle Navigation Menu"
+            whileTap={{ scale: 0.92 }}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            <AnimatePresence mode="wait" initial={false}>
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <Menu className="w-6 h-6" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {isOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 shadow-xl px-4 pt-3 pb-6 animate-in slide-in-from-top-2 duration-150">
-          <nav className="flex flex-col space-y-1">
-            {siteConfig.navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-4 py-3 rounded-xl text-base font-medium flex items-center justify-between transition-colors ${
-                    isActive
-                      ? 'bg-slate-100 text-brand-navy font-semibold border-l-4 border-brand-gold'
-                      : 'text-slate-700 hover:bg-slate-50'
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  <ArrowRight className="w-4 h-4 text-slate-400" />
-                </Link>
-              );
-            })}
-          </nav>
-
-          <div className="mt-5 pt-4 border-t border-slate-100 flex flex-col gap-2.5">
-            <div className="grid grid-cols-2 gap-2">
-              <a
-                href={`tel:${siteConfig.phones[0]}`}
-                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-slate-100 text-slate-800 text-xs font-semibold active:scale-95 transition-transform"
-              >
-                <Phone className="w-3.5 h-3.5 text-brand-blue" />
-                <span>Call Us</span>
-              </a>
-              <a
-                href={siteConfig.whatsapp.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-semibold active:scale-95 transition-transform"
-              >
-                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-                <span>WhatsApp</span>
-              </a>
-            </div>
-
-            <Link
-              href="/contact"
-              className="w-full text-center py-3 rounded-xl bg-brand-navy text-white text-sm font-semibold shadow hover:bg-brand-navy-700 active:scale-95 transition-all"
+      {/* Mobile Drawer with Smooth Animation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden overflow-hidden bg-white border-b border-slate-200 shadow-xl px-4 pt-3 pb-6"
+          >
+            <motion.nav
+              initial="closed"
+              animate="open"
+              variants={{
+                open: { transition: { staggerChildren: 0.03 } },
+                closed: { transition: { staggerChildren: 0.02, staggerDirection: -1 } },
+              }}
+              className="flex flex-col space-y-1"
             >
-              Book Free Consultation
-            </Link>
-          </div>
-        </div>
-      )}
+              {siteConfig.navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div
+                    key={link.href}
+                    variants={{
+                      open: { opacity: 1, x: 0 },
+                      closed: { opacity: 0, x: -8 },
+                    }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`px-4 py-3 rounded-xl text-base font-medium flex items-center justify-between transition-colors ${
+                        isActive
+                          ? 'bg-slate-100 text-brand-navy font-semibold border-l-4 border-brand-gold'
+                          : 'text-slate-700 hover:bg-slate-50'
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      <ArrowRight className="w-4 h-4 text-slate-400" />
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </motion.nav>
+
+            <div className="mt-5 pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href={`tel:${siteConfig.phones[0]}`}
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-slate-100 text-slate-800 text-xs font-semibold active:scale-95 transition-transform"
+                >
+                  <Phone className="w-3.5 h-3.5 text-brand-blue" />
+                  <span>Call Us</span>
+                </a>
+                <a
+                  href={siteConfig.whatsapp.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-semibold active:scale-95 transition-transform"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+
+              <Link
+                href="/contact"
+                className="w-full text-center py-3 rounded-xl bg-brand-navy text-white text-sm font-semibold shadow hover:bg-brand-navy-700 active:scale-95 transition-all"
+              >
+                Book Free Consultation
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -5,15 +5,18 @@ import Image from 'next/image';
 import {
   X,
   Send,
-  ShieldCheck,
-  ChevronRight,
+  MessageCircle,
   GraduationCap,
   Briefcase,
   Compass,
   Building,
   Code,
   Sparkles,
+  ExternalLink,
+  ChevronRight,
+  ShieldCheck,
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig } from '@/config/site';
 
 // Official authentic WhatsApp SVG icon
@@ -92,8 +95,15 @@ export default function WhatsAppWidget() {
   return (
     <div className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end pointer-events-none select-none">
       {/* 1. Popup Modal / Chat Box (Golden & White Theme with Green CTA) */}
-      {isOpen && (
-        <div className="pointer-events-auto mb-3 w-[92vw] sm:w-[380px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(11,19,43,0.18)] border border-brand-gold/40 overflow-hidden flex flex-col animate-in slide-in-from-bottom-5 fade-in duration-200">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-auto mb-3 w-[92vw] sm:w-[380px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(11,19,43,0.18)] border border-brand-gold/40 overflow-hidden flex flex-col"
+          >
           {/* Header Banner (Ivory & Gold Gradient with Navy text) */}
           <div className="bg-gradient-to-r from-[#FCF9F2] via-white to-[#F7F1DF] border-b border-brand-gold/30 p-4 flex items-center justify-between relative shadow-sm">
             <div className="flex items-center gap-3">
@@ -206,47 +216,56 @@ export default function WhatsAppWidget() {
               <ShieldCheck className="w-3.5 h-3.5 text-brand-gold-dark flex-shrink-0" />
               <span>Verified Business Number • Instant Response</span>
             </div>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 2. Floating Launcher Button & Tooltip Callout */}
       <div className="pointer-events-auto flex items-center gap-3">
-        {/* Pill Tooltip Callout ("Need help? Chat with Advisor 👋") */}
-        {showTooltip && !isOpen && (
-          <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white border border-brand-gold/60 shadow-xl text-slate-800 text-xs font-bold animate-in fade-in slide-in-from-right-3 duration-300">
-            {/* Green Online Dot */}
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
-
-            <button
-              type="button"
-              onClick={() => setIsOpen(true)}
-              className="hover:text-brand-gold-dark transition-colors flex items-center gap-1 text-left text-brand-navy"
+        {/* Pill Tooltip Callout */}
+        <AnimatePresence>
+          {showTooltip && !isOpen && (
+            <motion.div
+              initial={{ opacity: 0, x: 10, scale: 0.96 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 10, scale: 0.96 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white border border-brand-gold/60 shadow-xl text-slate-800 text-xs font-bold"
             >
-              <span>Need help? Chat with Advisor</span>
-              <span className="text-sm">👋</span>
-            </button>
+              {/* Green Online Dot */}
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
 
-            {/* Dismiss Tooltip */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowTooltip(false);
-              }}
-              className="text-slate-400 hover:text-slate-700 p-0.5 rounded-full transition-colors ml-1"
-              aria-label="Dismiss chat prompt"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        )}
+              <button
+                type="button"
+                onClick={() => setIsOpen(true)}
+                className="hover:text-brand-gold-dark transition-colors flex items-center gap-1 text-left text-brand-navy"
+              >
+                <span>Need help? Chat with Advisor</span>
+                <span className="text-sm">👋</span>
+              </button>
+
+              {/* Dismiss Tooltip */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowTooltip(false);
+                }}
+                className="text-slate-400 hover:text-slate-700 p-0.5 rounded-full transition-colors ml-1"
+                aria-label="Dismiss chat prompt"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Circular WhatsApp Action Button (Green with Official WhatsApp Logo) */}
         <div className="relative flex items-center justify-center">
-          {/* Soft Outer Aura */}
-          <span className="absolute w-16 h-16 rounded-full bg-[#25D366]/20 pointer-events-none" />
-          <span className="absolute w-20 h-20 rounded-full bg-[#25D366]/10 pointer-events-none" />
+          {/* Soft Breathing Aura */}
+          <span className="absolute w-16 h-16 rounded-full bg-[#25D366]/30 animate-pulse pointer-events-none" />
+          <span className="absolute w-20 h-20 rounded-full bg-[#25D366]/15 pointer-events-none" />
 
           <button
             type="button"

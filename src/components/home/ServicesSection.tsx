@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { servicesData, serviceCategories } from '@/data/services';
 import { Service } from '@/types';
+import { motion } from 'framer-motion';
 
 const iconMap: Record<string, React.ElementType> = {
   GraduationCap,
@@ -171,7 +172,13 @@ export default function ServicesSection() {
         </div>
 
         {/* All 4 Category Blocks Rendered (All 9 Services Immediately Discoverable) */}
-        <div className="space-y-12">
+        <motion.div
+          key={selectedFilter}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-12"
+        >
           {filteredCategories.map((category) => (
             <div
               key={category.id}
@@ -232,7 +239,7 @@ export default function ServicesSection() {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View All Hub CTA */}
         <div className="mt-10 text-center">
