@@ -64,6 +64,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/images/eminent-pathways-logo.jpeg' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/images/eminent-pathways-logo.jpeg',
+  },
 };
 
 export default function RootLayout({
