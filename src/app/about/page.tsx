@@ -106,11 +106,13 @@ export default function AboutPage() {
               <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-50">
                 <div className="relative h-80 sm:h-96 w-full">
                   <Image
-                    src="/images/classroom-3.jpg"
+                    src="/images/classroom-3.webp"
                     alt="Eminent Pathways Learning Spaces"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    placeholder="blur"
+                    blurDataURL="data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoKAAcABUB8JZQCo9EQdjymMQAA/mRKgfKQxb65aXozu7bHWBnlETFY2jftTh/AAAA="
                   />
                 </div>
                 <div className="p-4 bg-white border-t border-slate-100">

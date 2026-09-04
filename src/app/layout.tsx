@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     siteName: 'Eminent Pathways',
     images: [
       {
-        url: '/images/eminent-pathways-logo.jpeg',
+        url: '/images/eminent-pathways-logo.webp',
         width: 800,
         height: 800,
         alt: 'Eminent Pathways Official Emblem',
@@ -88,7 +88,7 @@ export default function RootLayout({
     name: siteConfig.name,
     alternateName: 'Eminent Pathways Consultancy',
     url: 'https://eminentpathways.com',
-    logo: 'https://eminentpathways.com/images/eminent-pathways-logo.jpeg',
+    logo: 'https://eminentpathways.com/images/eminent-pathways-logo.webp',
     description: siteConfig.positioning,
     slogan: siteConfig.tagline,
     telephone: siteConfig.phones[0],

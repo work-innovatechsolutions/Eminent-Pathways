@@ -101,17 +101,17 @@ export default function WhatsAppWidget() {
               <div className="relative w-12 h-12 rounded-2xl bg-white p-0.5 shadow-sm border-2 border-brand-gold flex-shrink-0">
                 <div className="relative w-full h-full rounded-[14px] overflow-hidden">
                   <Image
-                    src="/images/eminent-pathways-logo.jpeg"
+                    src="/images/eminent-pathways-logo.webp"
                     alt="Eminent Pathways Desk"
                     fill
                     sizes="48px"
                     className="object-cover"
+                    placeholder="blur"
+                    blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAQAgCdASoKAAoABUB8JYgCdAD5hQw/hroAAP7gqzjZnlPsnzBc9hONfB7as9LzsyO0ioD26CbpsTXMrD/D0tg6WhIFxiggAAA="
                   />
                 </div>
                 {/* Glowing Online status badge */}
-                <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full flex items-center justify-center">
-                  <span className="w-2 h-2 bg-emerald-700 rounded-full animate-ping opacity-75" />
-                </span>
+                <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full shadow-sm" />
               </div>
 
               <div>
@@ -244,8 +244,8 @@ export default function WhatsAppWidget() {
 
         {/* Circular WhatsApp Action Button (Green with Official WhatsApp Logo) */}
         <div className="relative flex items-center justify-center">
-          {/* Pulsing Outer Aura */}
-          <span className="absolute w-16 h-16 rounded-full bg-[#25D366]/25 animate-ping pointer-events-none" />
+          {/* Soft Outer Aura */}
+          <span className="absolute w-16 h-16 rounded-full bg-[#25D366]/20 pointer-events-none" />
           <span className="absolute w-20 h-20 rounded-full bg-[#25D366]/10 pointer-events-none" />
 
           <button

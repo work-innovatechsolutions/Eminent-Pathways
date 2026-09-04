@@ -15,11 +15,13 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="relative w-12 h-12 rounded-full overflow-hidden border border-brand-gold/40">
                 <Image
-                  src="/images/eminent-pathways-logo.jpeg"
+                  src="/images/eminent-pathways-logo.webp"
                   alt="Eminent Pathways"
                   fill
                   sizes="48px"
                   className="object-cover"
+                  placeholder="blur"
+                  blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAQAgCdASoKAAoABUB8JYgCdAD5hQw/hroAAP7gqzjZnlPsnzBc9hONfB7as9LzsyO0ioD26CbpsTXMrD/D0tg6WhIFxiggAAA="
                 />
               </div>
               <div>

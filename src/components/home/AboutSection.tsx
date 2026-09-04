@@ -87,11 +87,13 @@ export default function AboutSection() {
             <div className="relative rounded-2xl overflow-hidden border border-slate-700 shadow-2xl group">
               <div className="relative h-72 sm:h-96 w-full">
                 <Image
-                  src="/images/classroom-1.jpg"
+                  src="/images/classroom-1.webp"
                   alt="Real learning environment at Eminent Pathways facility"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 40vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAQCdASoKAAcABUB8JQAAW513M6A7AADNlF27KCWs2U20lWUFiTyhQf6hn2pv39cAAA=="
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-900 via-transparent to-transparent opacity-80" />

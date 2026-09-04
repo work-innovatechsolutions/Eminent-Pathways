@@ -86,14 +86,78 @@ export default function ServicesSection() {
             </p>
           </div>
 
-          {/* Fast Category Filter (Desktop clean pill row / Mobile smooth swipeable no-wrap bar) */}
-          <div className="w-full md:w-auto overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 py-1">
-            <div className="inline-flex items-center gap-1.5 p-1.5 bg-slate-100 rounded-2xl border border-slate-200/70 min-w-max shadow-inner">
+          {/* Fast Category Filter */}
+          <div className="w-full md:w-auto">
+            {/* Mobile Filter (< sm): Structured 2-row layout with symmetrical 2x2 balance */}
+            <div className="sm:hidden w-full bg-slate-100/90 p-2 rounded-2xl border border-slate-200/80 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setSelectedFilter('all')}
+                className={`w-full py-2.5 px-3.5 rounded-xl text-xs font-bold transition-all duration-150 flex items-center justify-between ${
+                  selectedFilter === 'all'
+                    ? 'bg-brand-navy text-white shadow-md'
+                    : 'text-slate-700 hover:bg-white/80'
+                }`}
+              >
+                <span>All Services</span>
+                <span
+                  className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                    selectedFilter === 'all'
+                      ? 'bg-brand-gold text-brand-navy'
+                      : 'bg-slate-200 text-slate-600'
+                  }`}
+                >
+                  09
+                </span>
+              </button>
+              <div className="grid grid-cols-2 gap-1.5 mt-1.5">
+                {serviceCategories
+                  .filter((cat) => cat.id !== 'all')
+                  .map((cat) => {
+                    const count =
+                      cat.id === 'education'
+                        ? '04'
+                        : cat.id === 'career'
+                        ? '02'
+                        : cat.id === 'business'
+                        ? '02'
+                        : '01';
+                    const isSelected = selectedFilter === cat.id;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => setSelectedFilter(cat.id)}
+                        className={`py-2 px-3 rounded-xl text-xs font-semibold transition-all duration-150 flex items-center justify-between ${
+                          isSelected
+                            ? 'bg-brand-navy text-white shadow-md'
+                            : 'text-slate-700 bg-white/70 hover:bg-white'
+                        }`}
+                      >
+                        <span className="truncate">{cat.label}</span>
+                        <span
+                          className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ml-1 ${
+                            isSelected
+                              ? 'bg-white/20 text-white font-bold'
+                              : 'text-slate-400'
+                          }`}
+                        >
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+
+            {/* Desktop & Tablet Filter (>= sm): Clean horizontal pill row */}
+            <div className="hidden sm:inline-flex items-center gap-1.5 p-1.5 bg-slate-100 rounded-2xl border border-slate-200/70 shadow-inner">
               {serviceCategories.map((cat) => (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => setSelectedFilter(cat.id)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
+                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-150 whitespace-nowrap flex-shrink-0 ${
                     selectedFilter === cat.id
                       ? 'bg-brand-navy text-white shadow-md'
                       : 'text-slate-600 hover:text-brand-navy hover:bg-white/80'

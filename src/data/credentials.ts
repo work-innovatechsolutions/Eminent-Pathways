@@ -25,7 +25,7 @@ export const credentialsData = {
     verificationUrl: 'https://www.uscert.co.uk',
     issuanceDate: '24-08-2026',
     surveillanceDate: '23-08-2027',
-    documentPath: '/images/iso-certificate.jpeg',
+    documentPath: '/images/iso-certificate.webp',
     documentType: 'image' as const,
     ctaText: 'View Certificate',
   },

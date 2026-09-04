@@ -85,12 +85,14 @@ export default function CareerProgramPreview() {
           <div className="lg:col-span-5 flex justify-center items-center">
             <div className="relative w-full max-w-[440px] sm:max-w-[480px] lg:max-w-[500px] aspect-[873/1280] rounded-2xl overflow-hidden border-2 border-brand-gold/50 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-gold group">
               <Image
-                src="/images/career-poster.jpeg"
+                src="/images/career-poster.webp"
                 alt="Learn IT. Get Interview-Ready. Pay After Placement! Official Poster"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 500px"
                 priority
+                placeholder="blur"
+                blurDataURL="data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACwAQCdASoHAAoABUB8JbAC7ADzVKswAP5BD8wNChVNR5PCuIhBPJ6YbgWfr6WDWSAZ+GmyvznGdrut+WTpAAAA"
               />
             </div>
           </div>
